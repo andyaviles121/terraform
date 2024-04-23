@@ -1,5 +1,5 @@
 resource "azapi_resource" "hub" {
-  type = "Microsoft.MachineLearningServices/workspaces@2023-10-01"
+  type = "Microsoft.MachineLearningServices/workspaces@2024-04-01"
   name = "my-ai-hub"
   location = azurerm_resource_group.default.location
   parent_id = azurerm_resource_group.default.id
@@ -22,4 +22,5 @@ resource "azapi_resource" "hub" {
     }
     kind = "hub"
   })
+  schema_validation_enabled = false
 }

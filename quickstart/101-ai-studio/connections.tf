@@ -1,6 +1,6 @@
 resource "azapi_resource" "connection" {
   type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01" // @2024-01-01-preview ?
-  name = "Default_AzureAIServices"
+  name = "Default_OpenAI"
   parent_id = azapi_resource.hub.id
 
   body = jsonencode({

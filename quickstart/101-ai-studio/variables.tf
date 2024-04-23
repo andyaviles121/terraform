@@ -2,12 +2,7 @@
 variable "names" {
   type = string
   description="idk"
-  default = "andymy"
-}
-
-variable "try" {
-    type=string
-    default="11"
+  default = "trial01"
 }
 
 variable "sku" {
