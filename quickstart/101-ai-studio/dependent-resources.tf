@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "default" {
 }
 
 resource "azurerm_storage_account" "default" {
-  name                            = "${var.names}st${var.try}"
+  name                            = "${var.names}storage${var.try}"
   location                        = azurerm_resource_group.default.location
   resource_group_name             = azurerm_resource_group.default.name
   account_tier                    = "Standard"
@@ -13,7 +13,7 @@ resource "azurerm_storage_account" "default" {
 }
 
 resource "azurerm_key_vault" "default" {
-  name                     = "${var.names}kv${var.try}"
+  name                     = "${var.names}keyvault${var.try}"
   location                 = azurerm_resource_group.default.location
   resource_group_name      = azurerm_resource_group.default.name
   tenant_id                = data.azurerm_client_config.current.tenant_id
@@ -28,3 +28,20 @@ resource "azurerm_cognitive_account" "default" {
     sku_name            = var.sku
     kind                = "OpenAI"
 }
+
+/* The following resources are OPTIONAL.
+resource "azurerm_application_insights" "default" {
+  name                = "${var.names}appinsights${var.try}"
+  location            = azurerm_resource_group.default.location
+  resource_group_name = azurerm_resource_group.default.name
+  application_type    = "web"
+}
+
+resource "azurerm_container_registry" "default" {
+  name                     = "${var.names}contreg${var.try}"
+  resource_group_name      = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+  sku                      = "premium"
+  admin_enabled            = true
+}
+*/

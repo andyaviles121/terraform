@@ -1,3 +1,4 @@
+// Names and Try are used for naming conventions in hub.tf and depende
 variable "names" {
   type = string
   description="idk"

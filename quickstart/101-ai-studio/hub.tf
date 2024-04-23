@@ -1,6 +1,6 @@
 resource "azapi_resource" "hub" {
   type = "Microsoft.MachineLearningServices/workspaces@2023-10-01"
-  name = "myworkspace"
+  name = "my-ai-hub"
   location = azurerm_resource_group.default.location
   parent_id = azurerm_resource_group.default.id
 
@@ -14,8 +14,11 @@ resource "azapi_resource" "hub" {
       friendlyName = "My Hub"
       storageAccount = azurerm_storage_account.default.id
       keyVault = azurerm_key_vault.default.id
-      // applicationInsight = 
-      // containerRegistry = 
+
+      /* Optional: To enable these field, the corresponding dependent resources need to be uncommented.
+      applicationInsight = azurerm_application_insights.default.id
+      containerRegistry = azurerm_container_registry.default.id
+      */
     }
     kind = "hub"
   })
