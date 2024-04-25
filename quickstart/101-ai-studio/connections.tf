@@ -1,5 +1,5 @@
-resource "azapi_resource" "connection" {
-  type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01" // @2024-01-01-preview ?
+/*resource "azapi_resource" "OpenAIConnection" {
+  type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01"
   name = "Default_OpenAI"
   parent_id = azapi_resource.hub.id
 
@@ -18,6 +18,35 @@ resource "azapi_resource" "connection" {
         }
       }
     })
-
   schema_validation_enabled = false
 }
+*/
+/*
+Create an AI Services connection after the resource is created. 
+What is needed: API key after resource is created.
+resource "azapi_resource" "AIServicesConnection" {
+  type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01-preview"
+  name = "Default_AIServices"
+  parent_id = azapi_resource.hub.id
+
+  body = jsonencode({
+      properties = {
+        category = "AIServices",
+        target = jsondecode(azapi_resource.AIServicesResource.output).properties.endpoint,
+        authType = "ApiKey", //  or "AAD"
+        isSharedToAll = true,
+        metadata = {
+          ApiType = "Azure",
+          ResourceId = azapi_resource.AIServicesResource.id
+        }
+        
+        credentials = {
+            Key = "b9007a8f01df43d39aed19746655cfa4" // <- must input APIKey here
+        }
+        
+      }
+    })
+  schema_validation_enabled = false
+  response_export_values = ["*"]
+}
+*/

@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "default" {
   name     = "azapi-template-rg-${var.names}"
-  location = "East US"
+  location = var.location
 }
 
 resource "azurerm_storage_account" "default" {
@@ -21,12 +21,43 @@ resource "azurerm_key_vault" "default" {
   purge_protection_enabled = false
 }
 
+/* // To connect the follow OpenAI account, remove comment brackets from connections.tf for the associated OpenAIConnection
 resource "azurerm_cognitive_account" "default" {
-    name                = "${var.names}cognitiveaccount"
+    name                = "${var.names}OpenAIResource"
     location            = azurerm_resource_group.default.location
     resource_group_name = azurerm_resource_group.default.name
     sku_name            = var.sku
     kind                = "OpenAI"
+}
+*/
+
+// AzAPI AIServices. After this resource is created, uncomment the AIServicesConnection in connections.tf
+resource "azapi_resource" "AIServicesResource"{
+  type = "Microsoft.CognitiveServices/accounts@2023-05-01" // @2024-01-01-preview ?
+  name = "${var.names}AIServicesResource"
+  location = azurerm_resource_group.default.location
+  parent_id = azurerm_resource_group.default.id
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  body = jsonencode({
+    properties = {
+        apiProperties = {
+            statisticsEnabled = false
+        }
+    }
+
+    kind = "AIServices"
+
+    sku = {
+        name = var.sku
+    }
+    })
+
+  schema_validation_enabled = false
+  response_export_values = ["*"]
 }
 
 /* The following resources are OPTIONAL.
