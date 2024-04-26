@@ -2,7 +2,7 @@
 variable "names" {
     type = string
     description="This variable is used to name the hub, project, and dependent resources."
-    default = "testing0123"
+    default = "mytfresour"
 }
 
 variable "location" {
