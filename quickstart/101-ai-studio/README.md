@@ -25,6 +25,8 @@ This configuration describes the minimal set of resources you require to get sta
 
 ## Usage
 
+After git cloning the repo, run the following commands after having docker running on your machine.
+
 ```bash
 terraform init
 
