@@ -32,7 +32,7 @@ terraform init
 
 az login 
 
-terraform plan -var names= -out demo.tfplan
+terraform plan -var names="tftemplate" -out demo.tfplan
 
 terraform apply "demo.tfplan"
 ```
