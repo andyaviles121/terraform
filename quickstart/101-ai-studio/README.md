@@ -23,6 +23,17 @@ This configuration describes the minimal set of resources you require to get sta
 | location | The Azure region used for deployments | East US |
 | sku | The SKU for AI Services resources | S0
 
+## Connections
+
+The template currently creates the AIServices resource first, without connecting it to the AI Hub since the API Keys are needed to create the connection in ```connections.tf```.
+
+Instructions for connecting the AIServices:
+1. Run the commands in Usage.
+1. Remove the ```/*``` and ```*/``` surrounding the AzAPI resource named ```AIServicesConnection``` in ```connections.tf```.
+1. Find the API Keys in the [Azure Portal](portal.azure.com) for the AIServicesResource in the resource group created.
+1. Input that key into the ```AIServicesConnection```. 
+1. Run ```terraform validate``` and ```terraform apply``` again.
+
 ## Usage
 
 After git cloning the repo, run the following commands after having docker running on your machine.
