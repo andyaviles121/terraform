@@ -21,9 +21,10 @@
   schema_validation_enabled = false
 }
 */
+
+//Create an AI Services connection after the resource is created. 
+//What is needed: API key after resource is created.
 /*
-Create an AI Services connection after the resource is created. 
-What is needed: API key after resource is created.
 resource "azapi_resource" "AIServicesConnection" {
   type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01-preview"
   name = "Default_AIServices"
@@ -33,7 +34,7 @@ resource "azapi_resource" "AIServicesConnection" {
       properties = {
         category = "AIServices",
         target = jsondecode(azapi_resource.AIServicesResource.output).properties.endpoint,
-        authType = "ApiKey", //  or "AAD"
+        authType = "AAD", //  or "APIKey"
         isSharedToAll = true,
         metadata = {
           ApiType = "Azure",
@@ -41,7 +42,7 @@ resource "azapi_resource" "AIServicesConnection" {
         }
         
         credentials = {
-            Key = "b9007a8f01df43d39aed19746655cfa4" // <- must input APIKey here
+            Key = "" // <- must input APIKey here
         }
         
       }

@@ -17,7 +17,7 @@ resource "azurerm_key_vault" "default" {
   location                 = azurerm_resource_group.default.location
   resource_group_name      = azurerm_resource_group.default.name
   tenant_id                = data.azurerm_client_config.current.tenant_id
-  sku_name                 = "premium"
+  sku_name                 = "Standard"
   purge_protection_enabled = false
 }
 
@@ -33,7 +33,7 @@ resource "azurerm_cognitive_account" "default" {
 
 // AzAPI AIServices. After this resource is created, uncomment the AIServicesConnection in connections.tf
 resource "azapi_resource" "AIServicesResource"{
-  type = "Microsoft.CognitiveServices/accounts@2023-05-01" // @2024-01-01-preview ?
+  type = "Microsoft.CognitiveServices/accounts@2023-10-01-preview" // @2024-01-01-preview ?
   name = "${var.names}AIServicesResource"
   location = azurerm_resource_group.default.location
   parent_id = azurerm_resource_group.default.id
@@ -48,9 +48,7 @@ resource "azapi_resource" "AIServicesResource"{
             statisticsEnabled = false
         }
     }
-
     kind = "AIServices"
-
     sku = {
         name = var.sku
     }

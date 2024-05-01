@@ -2,13 +2,13 @@
 variable "names" {
     type = string
     description="This variable is used to name the hub, project, and dependent resources."
-    default = "mytfresour"
+    default = "tftemplate"
 }
 
 variable "location" {
     type = string
     description = "This is the location for all resources"
-    default = "East US"
+    default = "East US 2"
 }
 
 variable "sku" {
