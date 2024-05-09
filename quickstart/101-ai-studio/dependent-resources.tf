@@ -17,19 +17,9 @@ resource "azurerm_key_vault" "default" {
   location                 = azurerm_resource_group.default.location
   resource_group_name      = azurerm_resource_group.default.name
   tenant_id                = data.azurerm_client_config.current.tenant_id
-  sku_name                 = "Standard"
+  sku_name                 = "standard"
   purge_protection_enabled = false
 }
-
-/* // To connect the follow OpenAI account, remove comment brackets from connections.tf for the associated OpenAIConnection
-resource "azurerm_cognitive_account" "default" {
-    name                = "${var.names}OpenAIResource"
-    location            = azurerm_resource_group.default.location
-    resource_group_name = azurerm_resource_group.default.name
-    sku_name            = var.sku
-    kind                = "OpenAI"
-}
-*/
 
 // AzAPI AIServices. After this resource is created, uncomment the AIServicesConnection in connections.tf
 resource "azapi_resource" "AIServicesResource"{

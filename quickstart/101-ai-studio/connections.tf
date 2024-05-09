@@ -1,30 +1,4 @@
-/*resource "azapi_resource" "OpenAIConnection" {
-  type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01"
-  name = "Default_OpenAI"
-  parent_id = azapi_resource.hub.id
-
-  body = jsonencode({
-      properties = {
-        category = "OpenAI",
-        target = azurerm_cognitive_account.default.endpoint,
-        authType = "ApiKey",
-        isSharedToAll = true,
-        metadata = {
-          ApiType = "Azure",
-          ResourceId = azurerm_cognitive_account.default.id
-        }
-        credentials = {
-            Key = azurerm_cognitive_account.default.primary_access_key
-        }
-      }
-    })
-  schema_validation_enabled = false
-}
-*/
-
-//Create an AI Services connection after the resource is created. 
-//What is needed: API key after resource is created.
-/*
+//Create an AI Services connection. 
 resource "azapi_resource" "AIServicesConnection" {
   type = "Microsoft.MachineLearningServices/workspaces/connections@2024-04-01-preview"
   name = "Default_AIServices"
@@ -50,4 +24,3 @@ resource "azapi_resource" "AIServicesConnection" {
   schema_validation_enabled = false
   response_export_values = ["*"]
 }
-*/
